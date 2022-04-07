@@ -1,7 +1,5 @@
 .navbar-hr {
-  color: rgb(46, 84, 87) 59%;
-  margin: 0px;
-  border-top: none;
+  margin: 0.1px;
 }
 
 .navbartop {
@@ -12,17 +10,12 @@
     #6c8a88 99%,
     #718f8d 100%
   );
-  padding-top: 12px;
-  padding-bottom: 1px;
+  padding: 20px 0 10px 0;
 
-  .navbar-icon {
+  ul {
     display: flex;
-    -webkit-display: flex;
     flex-direction: row;
-    -webkit-flex-direction: row;
     justify-content: flex-end;
-    -webkit-justify-content: flex-end;
-    align-items: center;
     transform: translate(-10%, -10%);
 
     li {
@@ -166,6 +159,7 @@
     rgb(108, 138, 136) 99%,
     rgb(113, 143, 141) 100%
   );
+  padding: 8px 0;
 
   .navbarsub-list {
     margin: auto 12%;

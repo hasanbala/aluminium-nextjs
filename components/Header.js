@@ -1,48 +1,41 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/Header.module.scss";
 
 const Header = () => {
-  const router = useRouter();
-
   return (
     <header>
       <nav className={styles.navbartop}>
-        <div className={styles["navbartop-icon"]}>
-          <ul className={styles["navbar-icon"]}>
-            <li className={styles["icon-facebook"]}>
-              <Link href='https://www.ldp.org.tr/' target='_blank'>
-                <a>
-                  <i className='fab fa-facebook'></i>
-                </a>
-              </Link>
-            </li>
-            <li className={styles["icon-instagram"]}>
-              <Link href='https://www.ldp.org.tr/' target='_blank'>
-                <a>
-                  <i className='fab fa-instagram '></i>
-                </a>
-              </Link>
-            </li>
-            <li className={styles["icon-twitter"]}>
-              <Link href='https://www.ldp.org.tr/' target='_blank'>
-                <a>
-                  <i className='fab fa-twitter '></i>
-                </a>
-              </Link>
-            </li>
-            <li className={styles["icon-linkedin"]}>
-              <Link
-                href='https://www.linkedin.com/in/hasan-bala/'
-                target='_blank'>
-                <a>
-                  <i className='fab fa-linkedin'></i>
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <ul>
+          <li className={styles["icon-facebook"]}>
+            <Link href='https://www.ldp.org.tr/'>
+              <a target='_blank'>
+                <i className='fab fa-facebook'></i>
+              </a>
+            </Link>
+          </li>
+          <li className={styles["icon-instagram"]}>
+            <Link href='https://www.ldp.org.tr/'>
+              <a target='_blank'>
+                <i className='fab fa-instagram '></i>
+              </a>
+            </Link>
+          </li>
+          <li className={styles["icon-twitter"]}>
+            <Link href='https://www.ldp.org.tr/'>
+              <a target='_blank'>
+                <i className='fab fa-twitter '></i>
+              </a>
+            </Link>
+          </li>
+          <li className={styles["icon-linkedin"]}>
+            <Link href='https://www.linkedin.com/in/hasan-bala/'>
+              <a target='_blank'>
+                <i className='fab fa-linkedin'></i>
+              </a>
+            </Link>
+          </li>
+        </ul>
       </nav>
       <hr className={styles["navbar-hr"]} />
       <nav className={styles.navbarsub}>

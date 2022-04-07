@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
 import "../styles/global.scss";
-import "../styles/home.scss";
 import "../styles/notfound.scss";
 
 const MyApp = ({ Component, pageProps }) => {
