@@ -1,0 +1,26 @@
+.header {
+  background-color: #fff;
+
+  ul {
+    display: flex;
+    li {
+      a {
+        display: flex;
+        text-decoration: none;
+        height: 60px;
+        padding: 0 20px;
+        align-items: center;
+        color: black;
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+        color: black;
+      }
+      &:last-child {
+        margin-left: auto;
+      }
+    }
+  }
+}
