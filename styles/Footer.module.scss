@@ -25,24 +25,26 @@
   }
 
   .footer-d {
-    margin: auto 10%;
+    margin: auto 8%;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
     .f-about {
-      padding: 0 20px;
       margin-bottom: 60px;
 
       @extend %footer-hr;
     }
 
     .f-address {
-      padding: 0 20px;
       list-style-type: none;
       margin-bottom: 60px;
 
       @extend %footer-hr;
+
+      .addr {
+        margin: 0 8px 20px 0;
+      }
 
       .footer-icon {
         display: flex;
@@ -50,8 +52,7 @@
         justify-content: center;
         align-items: center;
         transform: translate(-10%, -10%);
-        margin-right: 10%;
-        margin-left: 18%;
+        margin: 40px 6% 0 24%;
 
         li {
           list-style: none;
@@ -187,7 +188,6 @@
     }
 
     .f-contact {
-      padding: 0 20px;
       list-style-type: none;
       margin-bottom: 60px;
 

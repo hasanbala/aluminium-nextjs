@@ -1,0 +1,22 @@
+.about-us {
+  margin: auto 12%;
+
+  h2 {
+    text-align: center;
+    margin-top: 80px;
+  }
+
+  .about-text {
+    margin: 100px 0;
+    content: "";
+    clear: both;
+    display: table;
+
+    .img2 {
+      float: right;
+      width: 50%;
+      border-radius: 8px;
+      margin-left: 20px;
+    }
+  }
+}

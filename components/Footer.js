@@ -23,7 +23,9 @@ const Footer = () => {
             <hr className={styles["footer-hr"]} />
             <li>
               {" "}
-              <i className='fas fa-map-marked-alt'></i>
+              <div className={styles.addr}>
+                <i className='fas fa-map-marked-alt'></i>
+              </div>
               <p>ADDRESS</p>
             </li>
             <ul className={styles["footer-icon"]}>
@@ -42,7 +44,7 @@ const Footer = () => {
               <li className={styles["icon-twitter"]}>
                 <a target='_blank' href='https://www.ldp.org.tr/'>
                   {" "}
-                  <i className={styles["fab fa-twitter"]}></i>
+                  <i className='fab fa-twitter'></i>
                 </a>
               </li>
               <li className={styles["icon-linkedin"]}>
@@ -50,7 +52,7 @@ const Footer = () => {
                   target='_blank'
                   href='https://www.linkedin.com/in/hasan-bala/'>
                   {" "}
-                  <i className={styles["fab fa-linkedin"]}></i>
+                  <i className='fab fa-linkedin'></i>
                 </a>
               </li>
             </ul>

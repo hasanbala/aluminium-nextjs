@@ -8,10 +8,10 @@ const Layout = ({ children }) => {
     <div>
       <Head>
         <meta name='og:title' content='ABK Alüminyum' />
-        <meta charset='UTF-8' />
+        <meta charSet='UTF-8' />
         <title>ABK Alüminyum</title>
         <meta name='author' content='Blaaool' />
-        <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+        <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <meta
           name='keywords'
