@@ -69,7 +69,7 @@ const Header = () => {
               </Link>
             </li>
             <li className={styles.item}>
-              <Link href='/products'>
+              <Link href='/products/prindex'>
                 <a data-hover='ÜRÜNLER'>ÜRÜNLER</a>
               </Link>
             </li>

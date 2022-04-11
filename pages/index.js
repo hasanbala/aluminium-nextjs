@@ -1,47 +1,22 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import ImageGallery from "react-image-gallery";
+import getTable from "../components/Table";
 
-const Home = () => {
-  // const images = data.photos.map((url) => ({ original: url }));
-  const images = fetch("/slider").then((img) => console.log(img));
-
+const Home = ({ data }) => {
+  const responseImages = data
+    .map((trump) => trump.Attachments[0].url)
+    .reverse();
+  const images = responseImages.map((url) => ({ original: url }));
   return (
     <div>
       <Head>
         <title>Home</title>
       </Head>
       <main>
-        {/* <section className={styles.slider}>
-        <div className={styles["slider-main"]}>
-          <div className={styles["slide s--active"]}>
-            <div className={styles["slide-inner"]} />
-          </div>
-          <div className={styles.slide}>
-            <div className={styles["slide-inner"]} />
-          </div>
-          <div className={styles.slide}>
-            <div className={styles["slide-inner"]} />
-          </div>
-          <div className={styles.slide}>
-            <div className={styles["slide-inner"]} />
-          </div>
-          <div className={styles["slide s--prev"]}>
-            <div className={styles["slide-inner"]} />
-          </div>
-        </div>
-        <div className={styles["slider-control"]}>
-          <div className={styles["slider-control-line"]} />
-          <div className={styles["slider-control-line"]} />
-        </div>
-        <div
-          className={styles["slider-control slider-control--right m--right"]}>
-          <div className={styles["slider-control-line"]} />
-          <div className={styles["slider-control-line"]} />
-        </div>
-      </section> */}
-
-        <section>{/* <ImageGallery items={images} /> */}</section>
+        <section>
+          <ImageGallery items={images} />
+        </section>
 
         <article className={styles.band} id='band'>
           <div className={styles["band-text"]}>
@@ -63,5 +38,15 @@ const Home = () => {
     </div>
   );
 };
+
+export async function getStaticProps() {
+  const data = await getTable("Slider");
+  return {
+    props: {
+      data,
+    },
+    revalidate: 6000,
+  };
+}
 
 export default Home;

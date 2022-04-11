@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
 import getTable from "../../components/Table";
 import ProductsNav from "../../components/ProductsNav";
+import ProductsSub from "../../components/ProductsSub";
 
 const ProductsIndex = ({ mafsal }) => {
   return (
@@ -12,34 +12,7 @@ const ProductsIndex = ({ mafsal }) => {
       <main>
         <section className='products'>
           <ProductsNav />
-
-          <div className='products-sub'>
-            <h2>Mafsallar</h2>
-            <hr className='main-hr-products' />
-            <div className='products-caption'>
-              {mafsal.map((data, index) => (
-                <div className='column' key={index}>
-                  <div className='column-images'>
-                    {/* <img
-                      //   className='lazy-image'
-                      width='300'
-                      height='280'
-                      src={data.Attachments[0].url}
-                      alt={data.Name}
-                    /> */}
-                    <Image
-                      src={data.Attachments[0].url}
-                      height={300}
-                      width={400}
-                      alt={data.Name}
-                    />
-                  </div>
-                  <div className='column-heading'> {data.Name} </div>
-                  <div className='column-subheading' />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProductsSub post={mafsal} caption={"Mafsallar"} />
         </section>
       </main>
     </div>

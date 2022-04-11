@@ -1,7 +1,18 @@
 import Head from "next/head";
 import styles from "../../styles/Contact.module.scss";
+import useFormHook from "../../hooks/useFormHook";
+
+const initialValues = { name: "", email: "", subject: "", message: "" };
 
 const Contact = () => {
+  const [form, setForm] = useFormHook(initialValues);
+
+  const handleSubmitForms = async (e) => {
+    e.preventDefault();
+    console.log(form);
+    await setForm(initialValues);
+  };
+
   return (
     <div>
       <Head>
@@ -31,34 +42,43 @@ const Contact = () => {
                 </p>
               </div>
               <div className={styles["contact-forms"]}>
-                <input
-                  className={styles.fname}
-                  type='text'
-                  placeholder='İsim & Soyisim'
-                  name='name'
-                />
-                <input
-                  className={styles.femail}
-                  type='text'
-                  placeholder='Email Adresi'
-                  name='email'
-                />
-                <input
-                  className={styles.fsubject}
-                  type='text'
-                  placeholder='Mesaj Konusu'
-                  name='subject'
-                />
-                <textarea
-                  className={styles.fmessage}
-                  id='message'
-                  name='message'
-                  placeholder='Mesaj..'
-                  required
-                />
-                <button className='btn-hover color-3' type='submit'>
-                  GÖNDER
-                </button>
+                <form onSubmit={handleSubmitForms}>
+                  <input
+                    className={styles.fname}
+                    type='text'
+                    placeholder='İsim & Soyisim'
+                    name='name'
+                    value={form.name}
+                    onChange={setForm}
+                  />
+                  <input
+                    className={styles.femail}
+                    type='text'
+                    placeholder='Email Adresi'
+                    name='email'
+                    value={form.email}
+                    onChange={setForm}
+                  />
+                  <input
+                    className={styles.fsubject}
+                    type='text'
+                    placeholder='Mesaj Konusu'
+                    name='subject'
+                    value={form.subject}
+                    onChange={setForm}
+                  />
+                  <textarea
+                    className={styles.fmessage}
+                    id='message'
+                    name='message'
+                    placeholder='Mesaj..'
+                    value={form.message}
+                    onChange={setForm}
+                  />
+                  <button className='btn-hover color-3' type='submit'>
+                    GÖNDER
+                  </button>
+                </form>
               </div>
             </div>
           </div>
