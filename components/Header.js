@@ -1,8 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Header.module.scss";
+import { useEffect, useRef } from "react";
+import Toggle from "./Toogle";
 
 const Header = () => {
+  const openNav = useRef();
+  const closeNav = useRef();
+  const closeNavX = useRef();
+
+  useEffect(() => {
+    console.log("szdvfcsdf");
+    openNav.current.onclick = () => {
+      document.documentElement.style.setProperty("--nav-width", "100%");
+    };
+    closeNavX.current.onclick = () => {
+      document.documentElement.style.setProperty("--nav-width", "0%");
+    };
+    closeNav.current.onclick = () => {
+      document.documentElement.style.setProperty("--nav-width", "0%");
+    };
+  }, [openNav]);
+
   return (
     <header>
       <nav className={styles.navbartop}>
@@ -55,8 +74,8 @@ const Header = () => {
                 </a>
               </Link>
             </li>
-            <li className={styles.toggle}>
-              <i className='fas fa-align-justify'></i>
+            <li className={styles.toggle} ref={openNav}>
+              <i className='fas fa-align-justify' />
             </li>
             <li className={styles.item}>
               <Link href='/'>
@@ -86,18 +105,7 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      <nav>
-        <div id='myNav' className={styles.overlay}>
-          <a className={styles.closebtn}>&times;</a>
-          <div className={styles["overlay-content"]}>
-            <a href='index.html'>ANASAYFA</a>
-            <a href='about.html'>HAKKIMIZDA</a>
-            <a href='products.html'>ÜRÜNLER</a>
-            <a href='catalog.html'>KATALOG</a>
-            <a href='contact.html'>İLETİŞİM</a>
-          </div>
-        </div>
-      </nav>
+      <Toggle closeNavX={closeNavX} closeNav={closeNav} />
     </header>
   );
 };

@@ -1,4 +1,3 @@
-// import styles from "../styles/Header.module.scss";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Head from "next/head";
@@ -40,9 +39,7 @@ const Layout = ({ children }) => {
           href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'
         />
       </Head>
-
       <Header />
-
       <>{children}</>
       <Footer />
     </div>

@@ -1,5 +1,9 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
+:root {
+  --nav-width: 0%;
+}
+
 html,
 body {
   margin: 0;

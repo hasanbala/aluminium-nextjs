@@ -2,6 +2,18 @@
   margin: 0.1px;
 }
 
+@media screen and (max-width: 768px) {
+  .navbarsub ul {
+    flex-wrap: wrap;
+  }
+  .item {
+    display: none;
+  }
+  .toggle {
+    display: block !important;
+  }
+}
+
 .navbartop {
   background: linear-gradient(
     64deg,
@@ -232,11 +244,11 @@
 
     .toggle {
       display: none;
-      color: #acacac;
+      color: #fff;
 
       &:hover {
         cursor: pointer;
-        color: #fff;
+        color: #acacac;
       }
     }
 
