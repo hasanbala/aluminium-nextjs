@@ -1,3 +1,20 @@
+@media screen and (max-width: 950px) {
+  .contact-sub {
+    flex-direction: column !important;
+    align-items: center !important;
+
+    .contact-symbol {
+      padding-bottom: 50px !important;
+      flex-basis: 0px !important;
+      margin-right: 0px !important;
+      margin-top: 0px !important;
+    }
+    .contact-forms {
+      margin-left: 0 !important;
+    }
+  }
+}
+
 .contact {
   text-align: center;
   margin: auto 12%;

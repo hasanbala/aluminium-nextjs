@@ -10,7 +10,6 @@ const Header = () => {
   const closeNavX = useRef();
 
   useEffect(() => {
-    console.log("szdvfcsdf");
     openNav.current.onclick = () => {
       document.documentElement.style.setProperty("--nav-width", "100%");
     };

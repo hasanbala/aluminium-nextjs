@@ -1,6 +1,16 @@
 import Link from "next/link";
+import { useRef, useEffect, useState } from "react";
 
 const ProductsNav = () => {
+  const [toggle, setToggle] = useState(false);
+  const toggleProduct = useRef();
+
+  useEffect(() => {
+    toggleProduct.current.onclick = () => {
+      setToggle((prevState) => !prevState);
+    };
+  }, [toggleProduct]);
+
   return (
     <>
       <h2>ÜRÜNLER</h2>
@@ -14,44 +24,44 @@ const ProductsNav = () => {
                 </Link>
               </li>
               <li className='products-toggle'>
-                <i className='fas fa-align-justify' />
+                <i className='fas fa-align-justify' ref={toggleProduct} />
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/flanslar'>
                   <a data-hover='Flanşlar'>Flanşlar</a>
                 </Link>
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/tapalar'>
                   <a data-hover='Tapalar'>Tapalar</a>
                 </Link>
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/pleksi'>
                   <a data-hover='Pleksi'>Pleksi</a>
                 </Link>
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/bilezikler'>
                   <a data-hover='Bilezikler'>Bilezikler</a>
                 </Link>
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/donusler'>
                   <a data-hover='Dönüşler'>Dönüşler</a>
                 </Link>
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/camtutucular'>
                   <a data-hover='CamTutucuları'>CamTutucuları</a>
                 </Link>
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/baglantilar'>
                   <a data-hover='Bağlantılar'>Bağlantılar</a>
                 </Link>
               </li>
-              <li className='products-item'>
+              <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/profiller'>
                   <a data-hover='Profiller'>Profiller</a>
                 </Link>

@@ -6,8 +6,10 @@ const Footer = () => {
       <div className={styles.footer}>
         <div className={styles["footer-d"]}>
           <div className={styles["f-about"]}>
-            <h2>HAKKIMIZDA</h2>
-            <hr className={styles["footer-hr"]} />
+            <div className={styles.footTitle}>
+              <h2>HAKKIMIZDA</h2>
+              <hr className={styles["footer-hr2"]} />
+            </div>
             <p>
               ABK Alüminyum, dinamik ve gelişme odaklı yapısıyla alüminyum
               korkuluk sektörünün en genç ve en dinamik firmalarındandır.
@@ -19,8 +21,10 @@ const Footer = () => {
             </p>
           </div>
           <div className={styles["f-address"]}>
-            <h2>ADRES</h2>
-            <hr className={styles["footer-hr"]} />
+            <div className={styles.footTitle}>
+              <h2>ADRES</h2>
+              <hr className={styles["footer-hr2"]} />
+            </div>
             <li>
               {" "}
               <div className={styles.addr}>
@@ -58,8 +62,10 @@ const Footer = () => {
             </ul>
           </div>
           <div className={styles["f-contact"]}>
-            <h2>İLETİŞİM</h2>
-            <hr className={styles["footer-hr"]} />
+            <div className={styles.footTitle}>
+              <h2>İLETİŞİM</h2>
+              <hr className={styles["footer-hr2"]} />
+            </div>
             <li>
               <span className='fa fa-phone'></span>
               <a href='tel:(+90) 444 44 44'>+90 444 44 44 </a>
@@ -71,7 +77,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <hr className={styles["footer-hr2"]} />
+      <hr className={styles["footer-hr3"]} />
       <div className={styles["footer-bottom"]}>
         © Copyright 2022 | ABK Alüminyum - Tüm Hakları Saklıdır
       </div>

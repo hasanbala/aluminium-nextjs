@@ -16,13 +16,13 @@ const Toggle = ({ closeNavX, closeNav }) => {
               </Link>
             </li>
             <li>
-              <Link href='/products/prindex'>
-                <a>ÜRÜNLER</a>
+              <Link href='/about'>
+                <a>HAKKIMIZDA</a>
               </Link>
             </li>
             <li>
-              <Link href='/about'>
-                <a>HAKKIMIZDA</a>
+              <Link href='/products/prindex'>
+                <a>ÜRÜNLER</a>
               </Link>
             </li>
             <li>

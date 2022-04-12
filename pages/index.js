@@ -15,7 +15,7 @@ const Home = ({ data }) => {
       </Head>
       <main>
         <section>
-          <ImageGallery items={images} />
+          <ImageGallery items={images} lazyLoad={true} />
         </section>
 
         <article className={styles.band} id='band'>
