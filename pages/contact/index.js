@@ -77,7 +77,7 @@ const Contact = () => {
   return (
     <div>
       <Head>
-        <title>Contact</title>
+        <title>ABK Alüminyum | İletişim</title>
       </Head>
 
       <main>

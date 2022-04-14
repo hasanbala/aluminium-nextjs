@@ -1,20 +1,42 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import ImageGallery from "react-image-gallery";
-import getTable from "../components/Table";
+// import getTable from "../components/Table";
+import { useState, useEffect } from "react";
 
 const Home = ({ data }) => {
-  const responseImages = data
-    .map((trump) => trump.Attachments[0].url)
-    .reverse();
-  const images = responseImages.map((url) => ({ original: url }));
+  // const responseImages = data
+  //   .map((trump) => trump.Attachments[0].url)
+  //   .reverse();
+  // const images = responseImages.map((url) => ({ original: url }));
+
+  const [imageData, setImageData] = useState([]);
+
+  useEffect(() => {
+    const importAll = (r) => {
+      let images = {};
+      r.keys().map((item) => {
+        images[item.replace("./", "")] = r(item).default.src;
+      });
+      return Object.entries(images);
+    };
+    const images = importAll(
+      require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
+    );
+    setImageData(images);
+  }, [setImageData]);
+
+  // console.log(imageData);
+  const images = imageData.map((url) => ({ original: url[1] }));
+
   return (
     <div>
       <Head>
-        <title>Home</title>
+        <title>ABK Alüminyum</title>
       </Head>
       <main>
         <section>
+          {/* <ImageGallery items={images} lazyLoad={true} /> */}
           <ImageGallery items={images} lazyLoad={true} />
         </section>
 
@@ -39,14 +61,14 @@ const Home = ({ data }) => {
   );
 };
 
-export async function getStaticProps() {
-  const data = await getTable("Slider");
-  return {
-    props: {
-      data,
-    },
-    revalidate: 6000,
-  };
-}
+// export async function getStaticProps() {
+//   const data = await getTable("Slider");
+//   return {
+//     props: {
+//       data,
+//     },
+//     revalidate: 6000,
+//   };
+// }
 
 export default Home;

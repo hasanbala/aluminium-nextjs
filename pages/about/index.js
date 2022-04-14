@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div>
       <Head>
-        <title>About</title>
+        <title>ABK Alüminyum | Hakkımızda</title>
       </Head>
       <main>
         <section className={styles["about-us"]}>
@@ -14,7 +14,7 @@ const About = () => {
           <section className={styles["about-text"]}>
             <img
               className={styles.img2}
-              src='/images/ben.jpg'
+              src={"images/ben.jpg"}
               alt='HAKKIMIZDA'
             />
             <p>
@@ -41,5 +41,16 @@ const About = () => {
     </div>
   );
 };
+
+// export async function getStaticProps() {
+//   const res = await fetch("/images");
+//   const data = res.json();
+//   return {
+//     props: {
+//       data,
+//     },
+//     revalidate: 6000,
+//   };
+// }
 
 export default About;

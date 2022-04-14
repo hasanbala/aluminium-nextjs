@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
         <link
           rel='icon'
           type='image/png'
-          href='/public/favicon/logox.png'
+          href='/favicon/logox.png'
           sizes='32x32'
         />
         <link

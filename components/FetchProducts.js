@@ -1,22 +1,19 @@
-import Image from "next/image";
+// import { useState, useEffect } from "react";
 
-const FetchProducts = ({ post }) => {
-  return (
-    <div className='products-caption'>
-      {post.map((data, index) => (
-        <div className='column' key={index}>
-          <div className='column-images'>
-            <Image
-              src={data.Attachments[0].url}
-              height={300}
-              width={400}
-              alt={data.Name}
-            />
-          </div>
-          <div className='column-heading'> {data.Name} </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-export default FetchProducts;
+// const FetchProducts = ({ trail }) => {
+//   const [imageData, setImageData] = useState([]);
+//   useEffect(() => {
+//     const importAll = (r) => {
+//       let images = {};
+//       r.keys().map((item) => {
+//         images[item.replace("./", "")] = r(item).default.src;
+//       });
+//       return Object.entries(images);
+//     };
+//     const images = importAll(
+//       require.context(`../public/propics/`, false, /\.(png|jpe?g|svg)$/)
+//     );
+//     setImageData(images);
+//   }, [setImageData]);
+// };
+// export default FetchProducts;
