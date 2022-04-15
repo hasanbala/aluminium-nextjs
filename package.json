@@ -7,11 +7,13 @@
   },
   "dependencies": {
     "airtable": "^0.11.3",
+    "formik": "^2.2.9",
     "next": "latest",
     "nodemailer": "^6.7.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-image-gallery": "^1.2.7"
+    "react-image-gallery": "^1.2.7",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "sass": "^1.49.11"

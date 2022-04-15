@@ -1,78 +1,60 @@
 import Head from "next/head";
 import styles from "../../styles/Contact.module.scss";
-import useFormHook from "../../hooks/useFormHook";
 import { useRef } from "react";
+import { useFormik } from "formik";
+// import useFormHook from "../../hooks/useFormHook";
+import { Validation as validationSchema } from "../../components/Validation";
 
-const initialValues = { name: "", email: "", subject: "", message: "" };
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// const initialValues = { name: "", email: "", subject: "", message: "" };
 
 const Contact = () => {
-  const [form, setForm] = useFormHook(initialValues);
+  // const [form, setForm] = useFormHook(initialValues);
 
-  const validateForm = () => {
-    if (
-      form.name === "" ||
-      form.email === "" ||
-      form.subject === "" ||
-      form.message === ""
-    ) {
-      console.log("yanlış");
-      setForm(initialValues);
-      return false;
-    }
-    return true;
-  };
-
-  const handleSubmitForms = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) {
-      alertWarning("Lütfen tüm alanları doldurun");
-      return;
-    }
-    await fetch("/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
-    alertSuccess("Mesajınız başarılı bir şekilde gönderilmiştir");
-    await setForm(initialValues);
-  };
-
-  const formAlertId = useRef();
-  const formAlertCont = useRef();
-
-  const alertWarning = (message) => {
-    formAlertId.current = () => {
-      document.documentElement.style.display = "block";
-    };
-    formAlertCont.current = () => {
-      document.documentElement.textContent = message;
-      document.documentElement.style.background = "#f8d7da";
-      document.documentElement.style.color = "#d9534f";
-    };
-    setTimeout(function () {
-      formAlertId.current = () => {
-        document.documentElement.style.display = "none";
-      };
-    }, 3000);
-  };
+  const id01 = useRef(0);
+  const containerDiv = useRef(0);
 
   const alertSuccess = (message) => {
-    formAlertId.current = () => {
-      document.documentElement.style.display = "block";
-    };
-    formAlertCont.current = () => {
-      document.documentElement.textContent = message;
-      document.documentElement.style.background = "#d4edda";
-      document.documentElement.style.color = "#5cb85c";
-    };
+    id01.current.style.display = "block";
+    containerDiv.current.textContent = message;
+    containerDiv.current.style.backgroundColor = "#d4edda";
+    containerDiv.current.style.color = "#5cb85c";
     setTimeout(function () {
-      formAlertId.current = () => {
-        document.documentElement.style.display = "none";
-      };
+      id01.current.style.display = "none";
     }, 3000);
   };
+
+  const {
+    handleSubmit,
+    handleChange,
+    values,
+    errors,
+    touched,
+    handleBlur,
+    resetForm,
+  } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+    onSubmit: async (values, bag) => {
+      try {
+        await sleep(1500);
+        await fetch("/api", {
+          method: "POST",
+          body: JSON.stringify(values),
+        });
+        alertSuccess("Mesajınız başarılı bir şekilde gönderilmiştir.");
+        resetForm();
+      } catch (error) {
+        console.log(error);
+        // bag.setErrors({ general: error.response.data.message });
+      }
+    },
+    validationSchema,
+  });
 
   return (
     <div>
@@ -86,11 +68,8 @@ const Contact = () => {
             <div className={styles["contact-body"]}>
               <h2>İLETİŞİM</h2>
               <hr className='main-hr' />
-              <div id='id01' className={styles.modal} ref={formAlertId}>
-                <div
-                  className={styles["containerx animate"]}
-                  ref={formAlertCont}
-                />
+              <div id='id01' className={styles.modal} ref={id01}>
+                <div className={styles["containerx"]} ref={containerDiv}></div>
               </div>
             </div>
             <div className={styles["contact-sub"]}>
@@ -106,39 +85,61 @@ const Contact = () => {
                 </p>
               </div>
               <div className={styles["contact-forms"]}>
-                <form onSubmit={handleSubmitForms}>
+                <form onSubmit={handleSubmit}>
                   <input
-                    className={styles.fname}
+                    className={errors.name && touched.name ? styles.hover : ""}
                     type='text'
                     placeholder='İsim & Soyisim'
                     name='name'
-                    value={form.name}
-                    onChange={setForm}
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {/* {errors.name && touched.name && (
+                    <div className='err'> {errors.name} </div>
+                  )} */}
                   <input
-                    className={styles.femail}
+                    className={
+                      errors.email && touched.email ? styles.hover : ""
+                    }
                     type='text'
                     placeholder='Email Adresi'
                     name='email'
-                    value={form.email}
-                    onChange={setForm}
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {/* {errors.name && touched.name && (
+                    <div className='err'> {errors.name} </div>
+                  )} */}
                   <input
-                    className={styles.fsubject}
+                    className={
+                      errors.subject && touched.subject ? styles.hover : ""
+                    }
                     type='text'
                     placeholder='Mesaj Konusu'
                     name='subject'
-                    value={form.subject}
-                    onChange={setForm}
+                    value={values.subject}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {/* {errors.name && touched.name && (
+                    <div className='err'> {errors.name} </div>
+                  )} */}
                   <textarea
-                    className={styles.fmessage}
+                    className={
+                      errors.message && touched.message ? styles.hover : ""
+                    }
                     id='message'
                     name='message'
                     placeholder='Mesaj..'
-                    value={form.message}
-                    onChange={setForm}
+                    value={values.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {/* {errors.name && touched.name && (
+                    <div className='err'> {errors.name} </div>
+                  )} */}
                   <button className='btn-hover color-3' type='submit'>
                     GÖNDER
                   </button>

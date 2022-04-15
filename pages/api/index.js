@@ -1,8 +1,9 @@
 const nodemailer = require("nodemailer");
 
 export default (req, res) => {
-  // const body = JSON.parse(req.body);
-  const { name, email, subject, message } = JSON.parse(req.body);
+  const body = JSON.parse(req.body);
+  const { name, email, subject, message } = body;
+  console.log(body);
   if (name && email && subject && message) {
     const hostMail = process.env.MAIL_AUTH_USER;
     const transporter = nodemailer.createTransport({
