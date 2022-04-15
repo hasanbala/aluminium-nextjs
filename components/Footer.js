@@ -1,8 +1,34 @@
+import { useRef, useEffect } from "react";
 import styles from "../styles/Footer.module.scss";
 
 const Footer = () => {
+  const mybutton = useRef();
+  const myscroll = useRef();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.onscroll = () => {
+        scrollFunction();
+      };
+      const scrollFunction = () => {
+        if (
+          document.body.scrollTop > 500 ||
+          document.documentElement.scrollTop > 500
+        ) {
+          myscroll.current.style.display = "block";
+        } else {
+          myscroll.current.style.display = "none";
+        }
+      };
+      mybutton.current.onclick = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      };
+    }
+  }, []);
+
   return (
-    <div>
+    <footer>
       <div className={styles.footer}>
         <div className={styles["footer-d"]}>
           <div className={styles["f-about"]}>
@@ -81,7 +107,16 @@ const Footer = () => {
       <div className={styles["footer-bottom"]}>
         © Copyright 2022 | ABK Alüminyum - Tüm Hakları Saklıdır
       </div>
-    </div>
+
+      <div ref={mybutton}>
+        <span>
+          <i
+            className='fa-solid fa-circle-chevron-up'
+            id='scroll'
+            ref={myscroll}></i>
+        </span>
+      </div>
+    </footer>
   );
 };
 
