@@ -1,16 +1,14 @@
 const nodemailer = require("nodemailer");
 
 export default (req, res) => {
-  const body = JSON.parse(req.body);
-  const { name, email, subject, message } = body;
-  console.log(body);
+  const { name, email, subject, message } = JSON.parse(req.body);
   if (name && email && subject && message) {
-    const hostMail = process.env.MAIL_AUTH_USER;
+    const hostMail = process.env.NEXT_PUBLIC_MAIL_AUTH_USER;
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.MAIL_AUTH_USER,
-        pass: process.env.MAIL_AUTH_PASS,
+        user: process.env.NEXT_PUBLIC_MAIL_AUTH_USER,
+        pass: process.env.NEXT_PUBLIC_MAIL_AUTH_PASS,
       },
       tls: {
         rejectUnauthorized: true,
@@ -33,5 +31,5 @@ export default (req, res) => {
       }
     });
   }
-  res.status(200).json({ status: "OK" });
+  // res.status(200).json({ status: "OK" });
 };

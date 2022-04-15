@@ -2,10 +2,10 @@ import Head from "next/head";
 import styles from "../../styles/Contact.module.scss";
 import { useRef } from "react";
 import { useFormik } from "formik";
-// import useFormHook from "../../hooks/useFormHook";
 import { Validation as validationSchema } from "../../components/Validation";
+// import useFormHook from "../../hooks/useFormHook";
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // const initialValues = { name: "", email: "", subject: "", message: "" };
 
 const Contact = () => {
@@ -21,7 +21,7 @@ const Contact = () => {
     containerDiv.current.style.color = "#5cb85c";
     setTimeout(function () {
       id01.current.style.display = "none";
-    }, 3000);
+    }, 1500);
   };
 
   const {
@@ -41,7 +41,7 @@ const Contact = () => {
     },
     onSubmit: async (values, bag) => {
       try {
-        await sleep(1500);
+        // await sleep(1500);
         await fetch("/api", {
           method: "POST",
           body: JSON.stringify(values),
