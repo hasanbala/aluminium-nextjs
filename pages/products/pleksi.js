@@ -1,30 +1,16 @@
-import Head from "next/head";
+// import { useState, useEffect } from "react";
 import ProductsNav from "../../components/ProductsNav";
-// import getTable from "../../components/Table";
-import { useState, useEffect } from "react";
 import Image from "next/image";
+import Head from "next/head";
+// import getTable from "../../components/Table";
 // import ProductsSub from "../../components/ProductsSub";
 
-const Pleksi = ({ pleksi }) => {
-  const [imageData, setImageData] = useState([]);
+const Pleksi = ({ images }) => {
+  // const [imageData, setImageData] = useState([]);
 
-  useEffect(() => {
-    const importAll = (r) => {
-      let images = {};
-      r.keys().map((item) => {
-        images[item.replace("./", "")] = r(item).default.src;
-      });
-      return Object.entries(images);
-    };
-    const images = importAll(
-      require.context(
-        "../../public/propics/pleksiler",
-        false,
-        /\.(png|jpe?g|svg)$/
-      )
-    );
-    setImageData(images);
-  }, [setImageData]);
+  // useEffect(() => {
+  //   setImageData(images);
+  // }, [setImageData]);
 
   return (
     <div>
@@ -39,7 +25,7 @@ const Pleksi = ({ pleksi }) => {
             <h2>Pleksi</h2>
             <hr className='main-hr-products' />
             <div className='products-caption'>
-              {imageData.map((item, index) => (
+              {images[0].map((item, index) => (
                 <div className='column' key={index}>
                   <div className='column-images'>
                     <Image src={item[1]} height={300} width={400} />
@@ -67,5 +53,27 @@ const Pleksi = ({ pleksi }) => {
 //     revalidate: 6000,
 //   };
 // }
+
+export async function getStaticProps() {
+  const importAll = (r) => {
+    let images = {};
+    r.keys().map((item) => {
+      images[item.replace("./", "")] = r(item).default.src;
+    });
+    return [Object.entries(images)];
+  };
+  const images = importAll(
+    require.context(
+      "../../public/propics/pleksiler",
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  );
+  return {
+    props: {
+      images,
+    },
+  };
+}
 
 export default Pleksi;

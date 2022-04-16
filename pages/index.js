@@ -1,33 +1,23 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.scss";
+// import { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
+import styles from "../styles/Home.module.scss";
+import Head from "next/head";
 // import getTable from "../components/Table";
-import { useState, useEffect } from "react";
 
-const Home = ({ data }) => {
+const Home = ({ sliderImages }) => {
+  // const [imageData, setImageData] = useState([]);
+
+  // useEffect(() => {
+  //   setImageData(sliderImages);
+  // }, [setImageData]);
+
+  // const images = imageData.map((url) => ({ original: url[1] }));
+  const images = sliderImages[0].map((url) => ({ original: url[1] }));
+
   // const responseImages = data
   //   .map((trump) => trump.Attachments[0].url)
   //   .reverse();
   // const images = responseImages.map((url) => ({ original: url }));
-
-  const [imageData, setImageData] = useState([]);
-
-  useEffect(() => {
-    const importAll = (r) => {
-      let images = {};
-      r.keys().map((item) => {
-        images[item.replace("./", "")] = r(item).default.src;
-      });
-      return Object.entries(images);
-    };
-    const images = importAll(
-      require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
-    );
-    setImageData(images);
-  }, [setImageData]);
-
-  // console.log(imageData);
-  const images = imageData.map((url) => ({ original: url[1] }));
 
   return (
     <div>
@@ -70,5 +60,23 @@ const Home = ({ data }) => {
 //     revalidate: 6000,
 //   };
 // }
+
+export async function getStaticProps() {
+  const importAll = (r) => {
+    let images = {};
+    r.keys().map((item) => {
+      images[item.replace("./", "")] = r(item).default.src;
+    });
+    return [Object.entries(images)];
+  };
+  const sliderImages = importAll(
+    require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
+  );
+  return {
+    props: {
+      sliderImages,
+    },
+  };
+}
 
 export default Home;

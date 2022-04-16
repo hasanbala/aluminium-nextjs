@@ -1,8 +1,8 @@
+import { Validation as validationSchema } from "../../components/Validation";
+import { useFormik } from "formik";
+import { useRef } from "react";
 import Head from "next/head";
 import styles from "../../styles/Contact.module.scss";
-import { useRef } from "react";
-import { useFormik } from "formik";
-import { Validation as validationSchema } from "../../components/Validation";
 // import useFormHook from "../../hooks/useFormHook";
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -10,15 +10,24 @@ import { Validation as validationSchema } from "../../components/Validation";
 
 const Contact = () => {
   // const [form, setForm] = useFormHook(initialValues);
-
   const id01 = useRef(0);
   const containerDiv = useRef(0);
 
-  const alertSuccess = (message) => {
+  const alertSuccess = (message, bgc, c) => {
     id01.current.style.display = "block";
     containerDiv.current.textContent = message;
-    containerDiv.current.style.backgroundColor = "#d4edda";
-    containerDiv.current.style.color = "#5cb85c";
+    containerDiv.current.style.backgroundColor = bgc;
+    containerDiv.current.style.color = c;
+    setTimeout(function () {
+      id01.current.style.display = "none";
+    }, 1500);
+  };
+
+  const alertSending = (message, bgc, c) => {
+    id01.current.style.display = "block";
+    containerDiv.current.textContent = message;
+    containerDiv.current.style.backgroundColor = bgc;
+    containerDiv.current.style.color = c;
     setTimeout(function () {
       id01.current.style.display = "none";
     }, 1500);
@@ -42,11 +51,16 @@ const Contact = () => {
     onSubmit: async (values, bag) => {
       try {
         // await sleep(1500);
+        alertSending("Gönderiliyor..", "#cce5ff", "#004085");
         await fetch("/api", {
           method: "POST",
           body: JSON.stringify(values),
         });
-        alertSuccess("Mesajınız başarılı bir şekilde gönderilmiştir.");
+        alertSuccess(
+          "Mesajınız başarılı bir şekilde gönderilmiştir.",
+          "#d4edda",
+          "#5cb85c"
+        );
         resetForm();
       } catch (error) {
         console.log(error);
