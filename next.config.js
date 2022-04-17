@@ -1,5 +1,9 @@
 module.exports = {
+  // images: {
+  //   domains: ["dl.airtable.com"],
+  // },
   images: {
-    domains: ["dl.airtable.com"],
+    disableStaticImages: false,
+    formats: ["image/webp"],
   },
 };

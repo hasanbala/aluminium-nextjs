@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
         <meta name='og:title' content='ABK Alüminyum' />
         <meta charSet='UTF-8' />
         <title>ABK Alüminyum</title>
-        <meta name='author' content='Blaaool' />
+        <meta name='author' content='Hasan Bala' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <meta
@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
         Alüminyum Bilezikler, Alüminyum Korkuluk, Alüminyum Cam Sistemleri'
         />
         <meta
-          name='description'
+          name='og:description'
           content="ABK Alüminyum, alüminyum sektöründe ve alüminyum korkuluk sistemlerinde Türkiye'nin öncü 
         genç ve dinamik firması olmaktan gurur duymaktadır."
         />

@@ -1,18 +1,28 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import styles from "../styles/Home.module.scss";
 import Head from "next/head";
 // import getTable from "../components/Table";
 
-const Home = ({ sliderImages }) => {
-  // const [imageData, setImageData] = useState([]);
+const Home = () => {
+  const [imageData, setImageData] = useState([]);
 
-  // useEffect(() => {
-  //   setImageData(sliderImages);
-  // }, [setImageData]);
+  useEffect(() => {
+    const importAll = (r) => {
+      let images = {};
+      r.keys().map((item) => {
+        images[item.replace("./", "")] = r(item).default.src;
+      });
+      return Object.entries(images);
+    };
+    const sliderImages = importAll(
+      require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
+    );
+    setImageData(sliderImages);
+  }, [setImageData]);
 
-  // const images = imageData.map((url) => ({ original: url[1] }));
-  const images = sliderImages[0].map((url) => ({ original: url[1] }));
+  const images = imageData.map((url) => ({ original: url[1] }));
+  // const images = sliderImages[0].map((url) => ({ original: url[1] }));
 
   // const responseImages = data
   //   .map((trump) => trump.Attachments[0].url)
@@ -61,22 +71,22 @@ const Home = ({ sliderImages }) => {
 //   };
 // }
 
-export async function getStaticProps() {
-  const importAll = (r) => {
-    let images = {};
-    r.keys().map((item) => {
-      images[item.replace("./", "")] = r(item).default.src;
-    });
-    return [Object.entries(images)];
-  };
-  const sliderImages = importAll(
-    require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
-  );
-  return {
-    props: {
-      sliderImages,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const importAll = (r) => {
+//     let images = {};
+//     r.keys().map((item) => {
+//       images[item.replace("./", "")] = r(item).default.src;
+//     });
+//     return [Object.entries(images)];
+//   };
+//   const sliderImages = importAll(
+//     require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
+//   );
+//   return {
+//     props: {
+//       sliderImages,
+//     },
+//   };
+// }
 
 export default Home;

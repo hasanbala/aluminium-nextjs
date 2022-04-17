@@ -1,16 +1,30 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProductsNav from "../../components/ProductsNav";
 import Image from "next/image";
 import Head from "next/head";
 // import getTable from "../../components/Table";
 // import ProductsSub from "../../components/ProductsSub";
 
-const Baglantilar = ({ images }) => {
-  // const [imageData, setImageData] = useState([]);
+const Baglantilar = () => {
+  const [imageData, setImageData] = useState([]);
 
-  // useEffect(() => {
-  //   setImageData(images);
-  // }, [setImageData]);
+  useEffect(() => {
+    const importAll = (r) => {
+      let images = {};
+      r.keys().map((item) => {
+        images[item.replace("./", "")] = r(item).default.src;
+      });
+      return Object.entries(images);
+    };
+    const images = importAll(
+      require.context(
+        "../../public/propics/baglantiekipmanlari",
+        false,
+        /\.(png|jpe?g|svg)$/
+      )
+    );
+    setImageData(images);
+  }, [setImageData]);
 
   return (
     <div>
@@ -25,10 +39,10 @@ const Baglantilar = ({ images }) => {
             <h2>Bağlantılar</h2>
             <hr className='main-hr-products' />
             <div className='products-caption'>
-              {images[0].map((item, index) => (
+              {imageData.map((item, index) => (
                 <div className='column' key={index}>
                   <div className='column-images'>
-                    <Image src={item[1]} height={300} width={400} />
+                    <Image src={item[1]} height={300} width={400} alt='Resim' />
                   </div>
                   <div className='column-heading'>
                     {item[0].replace(".jpg", "")}
@@ -54,26 +68,26 @@ const Baglantilar = ({ images }) => {
 //   };
 // }
 
-export async function getStaticProps() {
-  const importAll = (r) => {
-    let images = {};
-    r.keys().map((item) => {
-      images[item.replace("./", "")] = r(item).default.src;
-    });
-    return [Object.entries(images)];
-  };
-  const images = importAll(
-    require.context(
-      "../../public/propics/baglantiekipmanlari",
-      false,
-      /\.(png|jpe?g|svg)$/
-    )
-  );
-  return {
-    props: {
-      images,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const importAll = (r) => {
+//     let images = {};
+//     r.keys().map((item) => {
+//       images[item.replace("./", "")] = r(item).default.src;
+//     });
+//     return [Object.entries(images)];
+//   };
+//   const images = importAll(
+//     require.context(
+//       "../../public/propics/baglantiekipmanlari",
+//       false,
+//       /\.(png|jpe?g|svg)$/
+//     )
+//   );
+//   return {
+//     props: {
+//       images,
+//     },
+//   };
+// }
 
 export default Baglantilar;
