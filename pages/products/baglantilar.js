@@ -42,7 +42,13 @@ const Baglantilar = () => {
               {imageData.map((item, index) => (
                 <div className='column' key={index}>
                   <div className='column-images'>
-                    <Image src={item[1]} height={300} width={400} alt='Resim' />
+                    <Image
+                      src={item[1]}
+                      height={300}
+                      width={400}
+                      alt='Resim'
+                      priority
+                    />
                   </div>
                   <div className='column-heading'>
                     {item[0].replace(".jpg", "")}

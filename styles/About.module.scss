@@ -1,9 +1,11 @@
-@media screen and (max-width: 800px) {
-  .img2 {
-    width: 100% !important;
+@media screen and (max-width: 1100px) {
+  .about-text {
+    grid-template-columns: 1fr !important;
+  }
+  .about-div {
     margin-left: 0 !important;
-    border-radius: 8px !important;
-    margin-bottom: 50px !important;
+    margin-top: 20px !important;
+    text-align: start !important;
   }
 }
 
@@ -17,15 +19,27 @@
 
   .about-text {
     margin: 100px 0;
-    content: "";
-    clear: both;
-    display: table;
+    display: grid;
+    grid-template-columns: 3fr 4fr;
 
-    .img2 {
-      float: right;
-      width: 50%;
-      border-radius: 8px;
-      margin-left: 20px;
+    .about-img {
+      border-radius: 10px;
     }
+
+    .about-div {
+      margin-left: 10px;
+      text-align: center;
+      align-self: center;
+    }
+    // content: "";
+    // clear: both;
+    // display: table;
+
+    // .img2 {
+    //   float: right;
+    //   width: 50%;
+    //   border-radius: 8px;
+    //   margin-left: 20px;
+    // }
   }
 }

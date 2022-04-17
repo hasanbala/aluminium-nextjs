@@ -19,24 +19,9 @@ const Layout = ({ children }) => {
         Alüminyum Bilezikler, Alüminyum Korkuluk, Alüminyum Cam Sistemleri'
         />
         <meta
-          name='og:description'
+          name='description'
           content="ABK Alüminyum, alüminyum sektöründe ve alüminyum korkuluk sistemlerinde Türkiye'nin öncü 
         genç ve dinamik firması olmaktan gurur duymaktadır."
-        />
-
-        <link
-          rel='icon'
-          type='image/png'
-          href='/favicon/logox.png'
-          sizes='32x32'
-        />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap'
-          rel='stylesheet'
-        />
-        <link
-          rel='stylesheet'
-          href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'
         />
       </Head>
       <Header />

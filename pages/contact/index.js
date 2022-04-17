@@ -5,7 +5,6 @@ import Head from "next/head";
 import styles from "../../styles/Contact.module.scss";
 // import useFormHook from "../../hooks/useFormHook";
 
-// const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // const initialValues = { name: "", email: "", subject: "", message: "" };
 
 const Contact = () => {
@@ -20,17 +19,7 @@ const Contact = () => {
     containerDiv.current.style.color = c;
     setTimeout(function () {
       id01.current.style.display = "none";
-    }, 1500);
-  };
-
-  const alertSending = (message, bgc, c) => {
-    id01.current.style.display = "block";
-    containerDiv.current.textContent = message;
-    containerDiv.current.style.backgroundColor = bgc;
-    containerDiv.current.style.color = c;
-    setTimeout(function () {
-      id01.current.style.display = "none";
-    }, 1500);
+    }, 2000);
   };
 
   const {
@@ -48,23 +37,26 @@ const Contact = () => {
       subject: "",
       message: "",
     },
-    onSubmit: async (values, bag) => {
+    onSubmit: async (values) => {
       try {
-        // await sleep(1500);
-        alertSending("Gönderiliyor..", "#cce5ff", "#004085");
         await fetch("/api", {
           method: "POST",
           body: JSON.stringify(values),
-        });
-        alertSuccess(
-          "Mesajınız başarılı bir şekilde gönderilmiştir.",
-          "#d4edda",
-          "#5cb85c"
+        }).then(
+          alertSuccess(
+            "Mesajınız başarılı bir şekilde gönderilmiştir.",
+            "#d4edda",
+            "#5cb85c"
+          )
         );
         resetForm();
       } catch (error) {
+        alertSuccess(
+          "Bir sorun oluştu, lütfen tekrar deneyiniz",
+          "#f8d7da",
+          "#762328"
+        );
         console.log(error);
-        // bag.setErrors({ general: error.response.data.message });
       }
     },
     validationSchema,
