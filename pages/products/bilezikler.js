@@ -47,7 +47,7 @@ const Bilezikler = () => {
                       height={300}
                       width={400}
                       alt='Resim'
-                      priority
+                      // priority
                     />
                   </div>
                   <div className='column-heading'>
