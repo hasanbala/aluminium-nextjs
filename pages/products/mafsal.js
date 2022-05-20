@@ -3,17 +3,17 @@ import { ProductsNav } from "@/components/productsNav";
 import Image from "next/image";
 import Head from "next/head";
 
-const Flanslar = ({ data }) => {
+const Mafsal = ({ data }) => {
   return (
     <div>
       <Head>
-        <title>ABK Alüminyum | Flanşlar</title>
+        <title>ABK Alüminyum | Ürünler</title>
       </Head>
       <main>
         <section className='products'>
           <ProductsNav />
           <div className='products-sub'>
-            <h2>Flanşlar</h2>
+            <h2>Mafsallar</h2>
             <hr className='main-hr-products' />
             <div className='products-caption'>
               {data.map((item, index) => (
@@ -52,5 +52,4 @@ export async function getServerSideProps(context) {
     };
   }
 }
-
-export default Flanslar;
+export default Mafsal;

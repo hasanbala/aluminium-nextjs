@@ -1,31 +1,9 @@
-import { useState, useEffect } from "react";
-import ProductsNav from "../../components/ProductsNav";
+import { FetchProducts } from "@/components/fetchProducts";
+import { ProductsNav } from "@/components/productsNav";
 import Image from "next/image";
 import Head from "next/head";
-// import getTable from "../../components/Table";
-// import ProductsSub from "../../components/ProductsSub";
 
-const Camtutucular = () => {
-  const [imageData, setImageData] = useState([]);
-
-  useEffect(() => {
-    const importAll = (r) => {
-      let images = {};
-      r.keys().map((item) => {
-        images[item.replace("./", "")] = r(item).default.src;
-      });
-      return Object.entries(images);
-    };
-    const images = importAll(
-      require.context(
-        "../../public/propics/camtutucular",
-        false,
-        /\.(png|jpe?g|svg)$/
-      )
-    );
-    setImageData(images);
-  }, [setImageData]);
-  // console.log(images);
+const Camtutucular = ({ data }) => {
   return (
     <div>
       <Head>
@@ -34,24 +12,22 @@ const Camtutucular = () => {
       <main>
         <section className='products'>
           <ProductsNav />
-          {/* <ProductsSub post={cam} caption={"Cam Tutucular"} /> */}
           <div className='products-sub'>
             <h2>Cam Tutucular</h2>
             <hr className='main-hr-products' />
             <div className='products-caption'>
-              {imageData.map((item, index) => (
+              {data.map((item, index) => (
                 <div className='column' key={index}>
                   <div className='column-images'>
                     <Image
-                      src={item[1]}
+                      src={item.download_url}
                       height={300}
                       width={400}
                       alt='Resim'
-                      // priority
                     />
                   </div>
                   <div className='column-heading'>
-                    {item[0].replace(".jpg", "")}
+                    {item.name.replace(".jpg", "")}
                   </div>
                 </div>
               ))}
@@ -63,37 +39,18 @@ const Camtutucular = () => {
   );
 };
 
-// export async function getStaticProps() {
-//   const data = await getTable("Products");
-//   const cam = data.filter((item) => item.Status === "Cam");
-//   return {
-//     props: {
-//       cam,
-//     },
-//     revalidate: 6000,
-//   };
-// }
-
-// export async function getStaticProps() {
-//   const importAll = (r) => {
-//     let images = {};
-//     r.keys().map((item) => {
-//       images[item.replace("./", "")] = r(item).default.src;
-//     });
-//     return [Object.entries(images)];
-//   };
-//   const images = importAll(
-//     require.context(
-//       "../../public/propics/camtutucular",
-//       false,
-//       /\.(png|jpe?g|svg)$/
-//     )
-//   );
-//   return {
-//     props: {
-//       images,
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+  try {
+    const trump = context.resolvedUrl.split("/")[2];
+    const data = await FetchProducts(`${trump}`);
+    return {
+      props: { data },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
+}
 
 export default Camtutucular;

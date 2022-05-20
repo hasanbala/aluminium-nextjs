@@ -10,4 +10,11 @@ const PostHome = () => {
   );
 };
 
+// export async function getServerSideProps(context) {
+//   const data = context.params;
+//   return {
+//     props: { data: data.json() }, // will be passed to the page component as props
+//   };
+// }
+
 export default PostHome;

@@ -1,13 +1,13 @@
-import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 
-const ProductsNav = () => {
+export const ProductsNav = () => {
   const [toggle, setToggle] = useState(false);
   const toggleProduct = useRef();
 
   useEffect(() => {
     toggleProduct.current.onclick = () => {
-      setToggle((prevState) => !prevState);
+      setToggle(() => !toggle);
     };
   }, [toggleProduct]);
 
@@ -19,7 +19,7 @@ const ProductsNav = () => {
           <div className='products-list'>
             <ul>
               <li className='products-logo'>
-                <Link href='/products/prindex'>
+                <Link href='/products/mafsal'>
                   <a>Ürün Grupları</a>
                 </Link>
               </li>
@@ -73,5 +73,3 @@ const ProductsNav = () => {
     </>
   );
 };
-
-export default ProductsNav;

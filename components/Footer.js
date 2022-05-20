@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import styles from "../styles/Footer.module.scss";
+import styles from "@/styles/footer.module.scss";
 
 const Footer = () => {
   const mybutton = useRef();

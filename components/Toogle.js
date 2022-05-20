@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../styles/Toogle.module.scss";
+import styles from "@/styles/Toogle.module.scss";
 
 const Toggle = ({ closeNavX, closeNav }) => {
   return (
@@ -21,7 +21,7 @@ const Toggle = ({ closeNavX, closeNav }) => {
               </Link>
             </li>
             <li>
-              <Link href='/products/prindex'>
+              <Link href='/products/mafsal'>
                 <a>ÜRÜNLER</a>
               </Link>
             </li>

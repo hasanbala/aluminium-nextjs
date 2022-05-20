@@ -1,8 +1,8 @@
-import { Validation as validationSchema } from "../../components/Validation";
+import { Validation as validationSchema } from "@/components/validation";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import Head from "next/head";
-import styles from "../../styles/Contact.module.scss";
+import styles from "@/styles/contact.module.scss";
 // import useFormHook from "../../hooks/useFormHook";
 
 // const initialValues = { name: "", email: "", subject: "", message: "" };
@@ -39,17 +39,17 @@ const Contact = () => {
     },
     onSubmit: async (values) => {
       try {
-        await fetch("/api", {
+        const response = await fetch("/api", {
           method: "POST",
           body: JSON.stringify(values),
-        }).then(
-          alertSuccess(
-            "Mesajınız başarılı bir şekilde gönderilmiştir.",
-            "#d4edda",
-            "#5cb85c"
-          )
-        );
+        });
+        console.log(response);
         resetForm();
+        alertSuccess(
+          "Mesajınız başarılı bir şekilde gönderilmiştir.",
+          "#d4edda",
+          "#5cb85c"
+        );
       } catch (error) {
         alertSuccess(
           "Bir sorun oluştu, lütfen tekrar deneyiniz",

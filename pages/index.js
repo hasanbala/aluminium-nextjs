@@ -1,33 +1,9 @@
-import { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
-import styles from "../styles/Home.module.scss";
+import styles from "@/styles/Home.module.scss";
 import Head from "next/head";
-// import getTable from "../components/Table";
 
-const Home = () => {
-  const [imageData, setImageData] = useState([]);
-
-  useEffect(() => {
-    const importAll = (r) => {
-      let images = {};
-      r.keys().map((item) => {
-        images[item.replace("./", "")] = r(item).default.src;
-      });
-      return Object.entries(images);
-    };
-    const sliderImages = importAll(
-      require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
-    );
-    setImageData(sliderImages);
-  }, [setImageData]);
-
-  const images = imageData.map((url) => ({ original: url[1] }));
-  // const images = sliderImages[0].map((url) => ({ original: url[1] }));
-
-  // const responseImages = data
-  //   .map((trump) => trump.Attachments[0].url)
-  //   .reverse();
-  // const images = responseImages.map((url) => ({ original: url }));
+const Home = ({ data }) => {
+  const images = data.map((url) => ({ original: url.download_url }));
 
   return (
     <div>
@@ -35,12 +11,11 @@ const Home = () => {
         <title>ABK Alüminyum</title>
       </Head>
       <main>
-        <section>
-          {/* <ImageGallery items={images} lazyLoad={true} /> */}
+        <div>
           <ImageGallery items={images} lazyLoad={true} />
-        </section>
+        </div>
 
-        <article className={styles.band} id='band'>
+        <main className={styles.band} id='band'>
           <div className={styles["band-text"]}>
             <h2>ANASAYFA</h2>
             <hr className={styles["main-hr"]} />
@@ -55,38 +30,27 @@ const Home = () => {
               benimsemiş bu doğrultuda yapılanmıştır.
             </p>
           </div>
-        </article>
+        </main>
       </main>
     </div>
   );
 };
 
-// export async function getStaticProps() {
-//   const data = await getTable("Slider");
-//   return {
-//     props: {
-//       data,
-//     },
-//     revalidate: 6000,
-//   };
-// }
+const baseEndPointUrl =
+  "https://api.github.com/repositories/493851314/contents/aluminium-nextjs/slider";
 
-// export async function getStaticProps() {
-//   const importAll = (r) => {
-//     let images = {};
-//     r.keys().map((item) => {
-//       images[item.replace("./", "")] = r(item).default.src;
-//     });
-//     return [Object.entries(images)];
-//   };
-//   const sliderImages = importAll(
-//     require.context("../public/slider", false, /\.(png|jpe?g|svg)$/)
-//   );
-//   return {
-//     props: {
-//       sliderImages,
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+  try {
+    const response = await fetch(baseEndPointUrl);
+    const data = await response.json();
+    return {
+      props: { data },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
+}
 
 export default Home;

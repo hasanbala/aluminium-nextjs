@@ -1,8 +1,10 @@
 import Head from "next/head";
-import styles from "../../styles/About.module.scss";
 import Image from "next/image";
+import styles from "@/styles/about.module.scss";
+import { FetchProducts } from "@/components/fetchProducts";
 
-const About = () => {
+const About = ({ data }) => {
+  console.log(data);
   return (
     <div>
       <Head>
@@ -15,7 +17,7 @@ const About = () => {
           <section className={styles["about-text"]}>
             <Image
               className={styles["about-img"]}
-              src={"/images/ben.jpg"}
+              src={data.download_url}
               alt='HAKKIMIZDA'
               width={600}
               height={500}
@@ -49,15 +51,23 @@ const About = () => {
   );
 };
 
-// export async function getStaticProps() {
-//   const res = await fetch("/images");
-//   const data = res.json();
-//   return {
-//     props: {
-//       data,
-//     },
-//     revalidate: 6000,
-//   };
-// }
+const baseEndPointUrl =
+  "https://api.github.com/repositories/493851314/contents/aluminium-nextjs/about";
+
+export async function getServerSideProps(context) {
+  try {
+    // const trump = context.resolvedUrl.split("/")[1];
+    const response = await fetch(baseEndPointUrl);
+    const data = await response.json();
+    // console.log(data);
+    return {
+      props: { data },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
+}
 
 export default About;

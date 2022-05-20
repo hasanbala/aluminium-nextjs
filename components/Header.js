@@ -1,8 +1,8 @@
+import { useEffect, useRef } from "react";
+import Toggle from "./toogle";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../styles/Header.module.scss";
-import { useEffect, useRef } from "react";
-import Toggle from "./Toogle";
+import styles from "@/styles/header.module.scss";
 
 const Header = () => {
   const openNav = useRef();
@@ -87,7 +87,7 @@ const Header = () => {
               </Link>
             </li>
             <li className={styles.item}>
-              <Link href='/products/prindex'>
+              <Link href='/products/mafsal'>
                 <a data-hover='ÜRÜNLER'>ÜRÜNLER</a>
               </Link>
             </li>

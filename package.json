@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "formik": "^2.2.9",
     "next": "latest",
     "nodemailer": "^6.7.3",

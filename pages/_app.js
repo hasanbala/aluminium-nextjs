@@ -1,6 +1,6 @@
-import Layout from "../components/Layout";
-import "../styles/global.scss";
-import "../styles/notfound.scss";
+import Layout from "@/components/layout";
+import "@/styles/global.scss";
+import "@/styles/notfound.scss";
 
 const MyApp = ({ Component, pageProps }) => {
   return (

@@ -1,7 +1,8 @@
 import Head from "next/head";
-import styles from "../../styles/Catalog.module.scss";
+import styles from "@/styles/catalog.module.scss";
 
 const Catalog = () => {
+  // console.log(props.data);
   return (
     <div>
       <Head>
@@ -33,5 +34,15 @@ const Catalog = () => {
     </div>
   );
 };
+
+// export async function getServerSideProps(context) {
+//   const response = await fetch(
+//     "https://api.github.com/repositories/493851314/contents/aluminium-nextjs/slider"
+//   );
+//   const data = await response.json();
+//   return {
+//     props: { data }, // will be passed to the page component as props
+//   };
+// }
 
 export default Catalog;
