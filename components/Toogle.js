@@ -1,15 +1,18 @@
 import Link from "next/link";
 import styles from "@/styles/Toogle.module.scss";
 
-const Toggle = ({ closeNavX, closeNav }) => {
+const Toggle = () => {
+  const handleClose = () =>
+    document.documentElement.style.setProperty("--nav-width", "0%");
+
   return (
     <div id='myNav' className={styles.overlay}>
-      <a href='#!' className={styles.closebtn} ref={closeNavX}>
+      <a href='#!' className={styles.closebtn} onClick={handleClose}>
         &times;
       </a>
       <div className={styles["overlay-content"]}>
         <ul>
-          <div ref={closeNav}>
+          <div onClick={handleClose}>
             <li>
               <Link href='/'>
                 <a>ANASAYFA</a>

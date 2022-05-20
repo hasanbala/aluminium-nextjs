@@ -39,11 +39,10 @@ const Contact = () => {
     },
     onSubmit: async (values) => {
       try {
-        const response = await fetch("/api", {
+        await fetch("/api", {
           method: "POST",
           body: JSON.stringify(values),
         });
-        console.log(response);
         resetForm();
         alertSuccess(
           "Mesajınız başarılı bir şekilde gönderilmiştir.",

@@ -1,25 +1,11 @@
-import { useEffect, useRef } from "react";
 import Toggle from "./toogle";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/header.module.scss";
 
 const Header = () => {
-  const openNav = useRef();
-  const closeNav = useRef();
-  const closeNavX = useRef();
-
-  useEffect(() => {
-    openNav.current.onclick = () => {
-      document.documentElement.style.setProperty("--nav-width", "100%");
-    };
-    closeNavX.current.onclick = () => {
-      document.documentElement.style.setProperty("--nav-width", "0%");
-    };
-    closeNav.current.onclick = () => {
-      document.documentElement.style.setProperty("--nav-width", "0%");
-    };
-  }, [openNav]);
+  const handleOpen = () =>
+    document.documentElement.style.setProperty("--nav-width", "100%");
 
   return (
     <header>
@@ -73,7 +59,7 @@ const Header = () => {
                 </a>
               </Link>
             </li>
-            <li className={styles.toggle} ref={openNav}>
+            <li className={styles.toggle} onClick={handleOpen}>
               <i className='fas fa-align-justify' />
             </li>
             <li className={styles.item}>
@@ -104,7 +90,7 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      <Toggle closeNavX={closeNavX} closeNav={closeNav} />
+      <Toggle />
     </header>
   );
 };
