@@ -50,45 +50,6 @@ img {
   }
 }
 
-.btn-hover {
-  width: 200px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  margin: 20px;
-  height: 55px;
-  text-align: center;
-  border: none;
-  background-size: 300% 100%;
-  border-radius: 50px;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-
-  &:hover {
-    background-position: 100% 0;
-    -o-transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &.color-3 {
-    background-image: linear-gradient(
-      to right,
-      #667eea,
-      #764ba2,
-      #6b8dd6,
-      #8e37d7
-    );
-    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-  }
-}
-
 .main-hr {
   color: #000;
   margin: 0 40%;

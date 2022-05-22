@@ -1,24 +1,31 @@
 import { Validation as validationSchema } from "@/components/validation";
 import { useFormik } from "formik";
-import { useRef } from "react";
 import Head from "next/head";
 import styles from "@/styles/contact.module.scss";
+import { useRef, useState } from "react";
 // import useFormHook from "../../hooks/useFormHook";
 
 // const initialValues = { name: "", email: "", subject: "", message: "" };
 
 const Contact = () => {
   // const [form, setForm] = useFormHook(initialValues);
-  const id01 = useRef(0);
-  const containerDiv = useRef(0);
+  const [status, setStatus] = useState(false);
 
-  const alertSuccess = (message, bgc, c) => {
-    id01.current.style.display = "block";
-    containerDiv.current.textContent = message;
-    containerDiv.current.style.backgroundColor = bgc;
-    containerDiv.current.style.color = c;
+  const divmodal = useRef(0);
+  const divcontainer = useRef(0);
+
+  const alertifyOpen = () => (divmodal.current.style.display = "block");
+  const alertifyClose = () => (divmodal.current.style.display = "none");
+
+  const notification = (message, bgc, c) => {
+    divcontainer.current.textContent = message;
+    divcontainer.current.style.backgroundColor = bgc;
+    divcontainer.current.style.color = c;
     setTimeout(function () {
-      id01.current.style.display = "none";
+      alertifyClose();
+      divcontainer.current.textContent = "";
+      divcontainer.current.style.backgroundColor = null;
+      divcontainer.current.style.color = null;
     }, 2000);
   };
 
@@ -39,23 +46,27 @@ const Contact = () => {
     },
     onSubmit: async (values) => {
       try {
+        setStatus(true);
+        alertifyOpen();
         await fetch("/api", {
           method: "POST",
           body: JSON.stringify(values),
         });
         resetForm();
-        alertSuccess(
+        notification(
           "Mesajınız başarılı bir şekilde gönderilmiştir.",
           "#d4edda",
           "#5cb85c"
         );
       } catch (error) {
-        alertSuccess(
+        resetForm();
+        notification(
           "Bir sorun oluştu, lütfen tekrar deneyiniz",
           "#f8d7da",
           "#762328"
         );
-        console.log(error);
+      } finally {
+        setStatus(false);
       }
     },
     validationSchema,
@@ -73,8 +84,8 @@ const Contact = () => {
             <div className={styles["contact-body"]}>
               <h2>İLETİŞİM</h2>
               <hr className='main-hr' />
-              <div id='id01' className={styles.modal} ref={id01}>
-                <div className={styles["containerx"]} ref={containerDiv}></div>
+              <div className={styles.modal} ref={divmodal}>
+                <div className={styles.containerx} ref={divcontainer}></div>
               </div>
             </div>
             <div className={styles["contact-sub"]}>
@@ -99,10 +110,8 @@ const Contact = () => {
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    disabled={status == true}
                   />
-                  {/* {errors.name && touched.name && (
-                    <div className='err'> {errors.name} </div>
-                  )} */}
                   <input
                     className={
                       errors.email && touched.email ? styles.hover : ""
@@ -113,10 +122,8 @@ const Contact = () => {
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    disabled={status == true}
                   />
-                  {/* {errors.name && touched.name && (
-                    <div className='err'> {errors.name} </div>
-                  )} */}
                   <input
                     className={
                       errors.subject && touched.subject ? styles.hover : ""
@@ -127,10 +134,8 @@ const Contact = () => {
                     value={values.subject}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    disabled={status == true}
                   />
-                  {/* {errors.name && touched.name && (
-                    <div className='err'> {errors.name} </div>
-                  )} */}
                   <textarea
                     className={
                       errors.message && touched.message ? styles.hover : ""
@@ -141,11 +146,12 @@ const Contact = () => {
                     value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    disabled={status == true}
                   />
-                  {/* {errors.name && touched.name && (
-                    <div className='err'> {errors.name} </div>
-                  )} */}
-                  <button className='btn-hover color-3' type='submit'>
+                  <button
+                    className={styles["btn-hover"]}
+                    type='submit'
+                    disabled={status == true}>
                     GÖNDER
                   </button>
                 </form>

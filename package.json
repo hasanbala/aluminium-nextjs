@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/react": "^18.0.9",
     "clsx": "^1.1.1",
     "cross-env": "^7.0.3",
     "formik": "^2.2.9",
