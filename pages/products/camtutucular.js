@@ -42,7 +42,7 @@ const Camtutucular = ({ data }) => {
 export async function getServerSideProps(context) {
   try {
     const trump = context.resolvedUrl.split("/")[2];
-    const data = await FetchProducts(`${trump}`);
+    const data = await FetchProducts(`products/${trump}`);
     return {
       props: { data },
     };

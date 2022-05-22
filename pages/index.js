@@ -36,8 +36,7 @@ const Home = ({ data }) => {
   );
 };
 
-const baseEndPointUrl =
-  "https://api.github.com/repositories/493851314/contents/aluminium-nextjs/slider";
+const baseEndPointUrl = `${process.env.RAW_GITHUB_API}/slider`;
 
 export async function getServerSideProps(context) {
   try {

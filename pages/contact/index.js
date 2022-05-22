@@ -2,32 +2,21 @@ import { Validation as validationSchema } from "@/components/validation";
 import { useFormik } from "formik";
 import Head from "next/head";
 import styles from "@/styles/contact.module.scss";
-import { useRef, useState } from "react";
-// import useFormHook from "../../hooks/useFormHook";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
-// const initialValues = { name: "", email: "", subject: "", message: "" };
+const stylex = {
+  position: "top-right",
+  autoClose: 1500,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 const Contact = () => {
-  // const [form, setForm] = useFormHook(initialValues);
   const [status, setStatus] = useState(false);
-
-  const divmodal = useRef(0);
-  const divcontainer = useRef(0);
-
-  const alertifyOpen = () => (divmodal.current.style.display = "block");
-  const alertifyClose = () => (divmodal.current.style.display = "none");
-
-  const notification = (message, bgc, c) => {
-    divcontainer.current.textContent = message;
-    divcontainer.current.style.backgroundColor = bgc;
-    divcontainer.current.style.color = c;
-    setTimeout(function () {
-      alertifyClose();
-      divcontainer.current.textContent = "";
-      divcontainer.current.style.backgroundColor = null;
-      divcontainer.current.style.color = null;
-    }, 2000);
-  };
 
   const {
     handleSubmit,
@@ -46,25 +35,17 @@ const Contact = () => {
     },
     onSubmit: async (values) => {
       try {
+        toast.info("Bilgileriniz gönderiliyor", stylex);
         setStatus(true);
-        alertifyOpen();
         await fetch("/api", {
           method: "POST",
           body: JSON.stringify(values),
         });
         resetForm();
-        notification(
-          "Mesajınız başarılı bir şekilde gönderilmiştir.",
-          "#d4edda",
-          "#5cb85c"
-        );
+        toast.success("Mesajınız başarılı bir şekilde gönderilmiştir.", stylex);
       } catch (error) {
         resetForm();
-        notification(
-          "Bir sorun oluştu, lütfen tekrar deneyiniz",
-          "#f8d7da",
-          "#762328"
-        );
+        toast.error("Bir sorun oluştu, lütfen tekrar deneyiniz", stylex);
       } finally {
         setStatus(false);
       }
@@ -84,9 +65,6 @@ const Contact = () => {
             <div className={styles["contact-body"]}>
               <h2>İLETİŞİM</h2>
               <hr className='main-hr' />
-              <div className={styles.modal} ref={divmodal}>
-                <div className={styles.containerx} ref={divcontainer}></div>
-              </div>
             </div>
             <div className={styles["contact-sub"]}>
               <div className={styles["contact-symbol"]}>
@@ -160,6 +138,7 @@ const Contact = () => {
           </div>
         </section>
       </main>
+      <ToastContainer theme='colored' />
     </div>
   );
 };
