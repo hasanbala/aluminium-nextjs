@@ -7,7 +7,7 @@ export const ProductsNav = () => {
 
   useEffect(() => {
     toggleProduct.current.onclick = () => {
-      setToggle(() => !toggle);
+      setToggle(!toggle);
     };
   }, [toggleProduct]);
 

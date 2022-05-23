@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "build": "NODE_PATH= next build",
-    "start": "NODE_PATH= next start"
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@types/react": "^18.0.9",

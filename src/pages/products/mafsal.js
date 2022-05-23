@@ -1,5 +1,5 @@
-import { FetchProducts } from "@/components/fetchProducts";
 import { ProductsNav } from "@/components/productsNav";
+import { FetchProducts } from "@/components/fetchProducts";
 import Image from "next/image";
 import Head from "next/head";
 

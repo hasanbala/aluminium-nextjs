@@ -1,4 +1,4 @@
-import Toggle from "./toogle";
+import Toggle from "./toggle";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/header.module.scss";

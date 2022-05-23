@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/styles/Toogle.module.scss";
+import styles from "@/styles/toggle.module.scss";
 
 const Toggle = () => {
   const handleClose = () =>
