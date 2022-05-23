@@ -1,5 +1,5 @@
 import ImageGallery from "react-image-gallery";
-import styles from "@/styles/Home.module.scss";
+import styles from "@/styles/home.module.scss";
 import Head from "next/head";
 
 const Home = ({ data }) => {
