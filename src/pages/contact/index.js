@@ -4,6 +4,7 @@ import Head from "next/head";
 import styles from "@styles/contact.module.scss";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import clsx from "clsx";
 
 const stylex = {
   position: "top-right",
@@ -53,6 +54,19 @@ const Contact = () => {
     validationSchema,
   });
 
+  const errorNames = clsx({
+    [styles.hover]: errors.name && touched.name === true,
+  });
+  const errorEmails = clsx({
+    [styles.hover]: errors.email && touched.email === true,
+  });
+  const errorSubjects = clsx({
+    [styles.hover]: errors.subject && touched.subject === true,
+  });
+  const errorMessages = clsx({
+    [styles.hover]: errors.message && touched.message === true,
+  });
+
   return (
     <div>
       <Head>
@@ -81,7 +95,7 @@ const Contact = () => {
               <div className={styles["contact-forms"]}>
                 <form onSubmit={handleSubmit}>
                   <input
-                    className={errors.name && touched.name ? styles.hover : ""}
+                    className={errorNames}
                     type='text'
                     placeholder='İsim & Soyisim'
                     name='name'
@@ -91,9 +105,7 @@ const Contact = () => {
                     disabled={status == true}
                   />
                   <input
-                    className={
-                      errors.email && touched.email ? styles.hover : ""
-                    }
+                    className={errorEmails}
                     type='text'
                     placeholder='Email Adresi'
                     name='email'
@@ -103,9 +115,7 @@ const Contact = () => {
                     disabled={status == true}
                   />
                   <input
-                    className={
-                      errors.subject && touched.subject ? styles.hover : ""
-                    }
+                    className={errorSubjects}
                     type='text'
                     placeholder='Mesaj Konusu'
                     name='subject'
@@ -115,9 +125,7 @@ const Contact = () => {
                     disabled={status == true}
                   />
                   <textarea
-                    className={
-                      errors.message && touched.message ? styles.hover : ""
-                    }
+                    className={errorMessages}
                     id='message'
                     name='message'
                     placeholder='Mesaj..'

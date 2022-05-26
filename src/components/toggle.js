@@ -1,9 +1,15 @@
 import Link from "next/link";
 import styles from "@styles/toggle.module.scss";
+import clsx from "clsx";
 
 const Toggle = ({ toggle, handleOpenToggle }) => {
+  const toggleStyle = clsx({
+    [styles.overlayClick]: toggle === true,
+    [styles.overlay]: toggle === false,
+  });
+
   return (
-    <div id='myNav' className={toggle ? styles.overlayClick : styles.overlay}>
+    <div id='myNav' className={toggleStyle}>
       <a href='#!' className={styles.closebtn} onClick={handleOpenToggle}>
         &times;
       </a>
