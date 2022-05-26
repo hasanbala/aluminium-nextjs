@@ -1,6 +1,6 @@
 .overlay {
   height: 100%;
-  width: var(--nav-width);
+  width: 0%;
   position: fixed;
   z-index: 5;
   top: 0;
@@ -48,4 +48,9 @@
     text-align: center;
     margin-top: 30px;
   }
+}
+
+.overlayClick {
+  @extend .overlay;
+  width: 100%;
 }

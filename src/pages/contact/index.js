@@ -1,7 +1,7 @@
-import { Validation as validationSchema } from "@/components/validation";
+import { Validation as validationSchema } from "@components/validation";
 import { useFormik } from "formik";
 import Head from "next/head";
-import styles from "@/styles/contact.module.scss";
+import styles from "@styles/contact.module.scss";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 

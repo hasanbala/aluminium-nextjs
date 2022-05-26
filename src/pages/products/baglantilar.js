@@ -1,6 +1,5 @@
-import { FetchProducts } from "@/components/fetchProducts";
-import { ProductsNav } from "@/components/productsNav";
-import Image from "next/image";
+import { FetchProducts } from "@components/fetchProducts";
+import { ProductsNav } from "@components/productsNav";
 import Head from "next/head";
 
 const Baglantilar = ({ data }) => {
@@ -19,11 +18,11 @@ const Baglantilar = ({ data }) => {
               {data.map((item, index) => (
                 <div className='column' key={index}>
                   <div className='column-images'>
-                    <Image
+                    <img
                       src={item.download_url}
-                      height={300}
-                      width={400}
-                      alt='Resim'
+                      height={280}
+                      width={380}
+                      alt='Abk Alüminyum'
                     />
                   </div>
                   <div className='column-heading'>

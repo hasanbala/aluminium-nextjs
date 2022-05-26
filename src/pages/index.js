@@ -1,5 +1,5 @@
 import ImageGallery from "react-image-gallery";
-import styles from "@/styles/home.module.scss";
+import styles from "@styles/home.module.scss";
 import Head from "next/head";
 
 const Home = ({ data }) => {
@@ -12,7 +12,11 @@ const Home = ({ data }) => {
       </Head>
       <main>
         <div>
-          <ImageGallery items={images} lazyLoad={true} />
+          <ImageGallery
+            items={images}
+            lazyLoad={true}
+            showFullscreenButton={false}
+          />
         </div>
 
         <main className={styles.band} id='band'>

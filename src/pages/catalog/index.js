@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "@/styles/catalog.module.scss";
+import styles from "@styles/catalog.module.scss";
 
 const Catalog = () => {
   return (

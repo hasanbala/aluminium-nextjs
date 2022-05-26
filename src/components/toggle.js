@@ -1,18 +1,15 @@
 import Link from "next/link";
-import styles from "@/styles/toggle.module.scss";
+import styles from "@styles/toggle.module.scss";
 
-const Toggle = () => {
-  const handleClose = () =>
-    document.documentElement.style.setProperty("--nav-width", "0%");
-
+const Toggle = ({ toggle, handleOpenToggle }) => {
   return (
-    <div id='myNav' className={styles.overlay}>
-      <a href='#!' className={styles.closebtn} onClick={handleClose}>
+    <div id='myNav' className={toggle ? styles.overlayClick : styles.overlay}>
+      <a href='#!' className={styles.closebtn} onClick={handleOpenToggle}>
         &times;
       </a>
       <div className={styles["overlay-content"]}>
         <ul>
-          <div onClick={handleClose}>
+          <div onClick={handleOpenToggle}>
             <li>
               <Link href='/'>
                 <a>ANASAYFA</a>

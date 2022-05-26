@@ -1,11 +1,11 @@
 import Toggle from "./toggle";
 import Link from "next/link";
-import Image from "next/image";
-import styles from "@/styles/header.module.scss";
+import styles from "@styles/header.module.scss";
+import { useState } from "react";
 
 const Header = () => {
-  const handleOpen = () =>
-    document.documentElement.style.setProperty("--nav-width", "100%");
+  const [toggle, setToggle] = useState(false);
+  const handleOpenToggle = () => setToggle(!toggle);
 
   return (
     <header>
@@ -46,7 +46,7 @@ const Header = () => {
         <div className={styles["navbarsub-list"]}>
           <ul id='myTopnav'>
             <li className={styles.logo}>
-              <Image
+              <img
                 className={styles["logo-img"]}
                 src='/favicon/logox.png'
                 height={32}
@@ -59,7 +59,7 @@ const Header = () => {
                 </a>
               </Link>
             </li>
-            <li className={styles.toggle} onClick={handleOpen}>
+            <li className={styles.toggle} onClick={handleOpenToggle}>
               <i className='fas fa-align-justify' />
             </li>
             <li className={styles.item}>
@@ -90,7 +90,7 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      <Toggle />
+      <Toggle toggle={toggle} handleOpenToggle={handleOpenToggle} />
     </header>
   );
 };

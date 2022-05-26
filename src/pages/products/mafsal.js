@@ -1,6 +1,5 @@
-import { ProductsNav } from "@/components/productsNav";
-import { FetchProducts } from "@/components/fetchProducts";
-import Image from "next/image";
+import { ProductsNav } from "@components/productsNav";
+import { FetchProducts } from "@components/fetchProducts";
 import Head from "next/head";
 
 const Mafsal = ({ data }) => {
@@ -19,11 +18,11 @@ const Mafsal = ({ data }) => {
               {data.map((item, index) => (
                 <div className='column' key={index}>
                   <div className='column-images'>
-                    <Image
+                    <img
                       src={item.download_url}
-                      height={300}
-                      width={400}
-                      alt='Resim'
+                      height={280}
+                      width={380}
+                      alt='Abk Alüminyum'
                     />
                   </div>
                   <div className='column-heading'>

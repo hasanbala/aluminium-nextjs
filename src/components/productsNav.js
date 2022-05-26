@@ -1,15 +1,9 @@
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 export const ProductsNav = () => {
   const [toggle, setToggle] = useState(false);
-  const toggleProduct = useRef();
-
-  useEffect(() => {
-    toggleProduct.current.onclick = () => {
-      setToggle(!toggle);
-    };
-  }, [toggleProduct]);
+  const handleOpenToggle = () => setToggle(!toggle);
 
   return (
     <>
@@ -24,7 +18,10 @@ export const ProductsNav = () => {
                 </Link>
               </li>
               <li className='products-toggle'>
-                <i className='fas fa-align-justify' ref={toggleProduct} />
+                <i
+                  className='fas fa-align-justify'
+                  onClick={handleOpenToggle}
+                />
               </li>
               <li className={toggle ? "products-item plus" : "products-item"}>
                 <Link href='/products/flanslar'>
