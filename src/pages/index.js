@@ -4,7 +4,6 @@ import Head from "next/head";
 
 const Home = ({ data }) => {
   const images = data.map((url) => ({ original: url.download_url }));
-
   return (
     <div>
       <Head>
