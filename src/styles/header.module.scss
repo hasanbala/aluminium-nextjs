@@ -31,6 +31,7 @@
     #6c8a88 99%,
     #718f8d 100%
   );
+  // background: #fafafa;
   padding: 20px 0 10px 0;
 
   ul {
@@ -58,6 +59,8 @@
         background: #111;
         border-radius: 50%;
         color: #fff;
+        // color: #000;
+
         transition: 0.5s;
       }
     }
@@ -180,6 +183,8 @@
     rgb(108, 138, 136) 99%,
     rgb(113, 143, 141) 100%
   );
+  // background: #fafafa;
+
   padding: 8px 0;
 
   .navbarsub-list {
@@ -213,13 +218,14 @@
 
       &::before {
         position: absolute;
-        top: -2px;
+        bottom: -2px;
         left: 0;
         overflow: hidden;
         max-width: 0;
         border-bottom: 2px solid #fff;
-        border-top: 2px solid #fff;
+        // border-top: 2px solid #fff;
         color: #fff;
+        // color: #000;
         content: attr(data-hover);
         transition: max-width 0.5s;
       }
@@ -247,12 +253,14 @@
 
       .brand-a {
         color: #fff !important;
+        // color: #000 !important;
       }
     }
 
     .toggle {
       display: none;
       color: #fff;
+      // color: #000;
 
       &:hover {
         cursor: pointer;

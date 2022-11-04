@@ -1,11 +1,17 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap");
+@font-face {
+  font-family: Volvo Novum;
+  src: url(../../public/fonts/VolvoNovum-Light.ttf);
+}
 
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: "Roboto Slab", serif;
+  // font-family: Volvo Novum, Arial, sans-serif;
+
   height: 100%;
   scroll-behavior: smooth;
 }

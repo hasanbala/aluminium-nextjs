@@ -1,7 +1,6 @@
+import { fetchProducts } from "@components/fetchProducts";
 import Head from "next/head";
-
 import styles from "@styles/about.module.scss";
-import { FetchProducts } from "@components/fetchProducts";
 
 const About = ({ data }) => {
   return (
@@ -43,7 +42,7 @@ const About = ({ data }) => {
 export async function getServerSideProps(context) {
   try {
     const trump = context.resolvedUrl.split("/")[1];
-    const data = await FetchProducts(trump);
+    const data = await fetchProducts(trump);
     return {
       props: { data },
     };

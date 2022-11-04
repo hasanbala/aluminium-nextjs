@@ -1,5 +1,5 @@
 import { ProductsNav } from "@components/productsNav";
-import { FetchProducts } from "@components/fetchProducts";
+import { fetchProducts } from "@components/fetchProducts";
 import Head from "next/head";
 
 const Mafsal = ({ data }) => {
@@ -19,6 +19,7 @@ const Mafsal = ({ data }) => {
                 <div className='column' key={index}>
                   <div className='column-images'>
                     <img
+                      loading='lazy'
                       src={item.download_url}
                       height={280}
                       width={380}
@@ -41,7 +42,7 @@ const Mafsal = ({ data }) => {
 export async function getServerSideProps(context) {
   try {
     const trump = context.resolvedUrl.split("/")[2];
-    const data = await FetchProducts(`products/${trump}`);
+    const data = await fetchProducts(`products/${trump}`);
     return {
       props: { data },
     };

@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className={styles.navbartop}>
+      {/* <nav className={styles.navbartop}>
         <ul>
           <li className={styles["icon-facebook"]}>
             <Link href='https://www.ldp.org.tr/'>
@@ -40,8 +40,8 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-      </nav>
-      <hr className={styles["navbar-hr"]} />
+      </nav> */}
+      {/* <hr className={styles["navbar-hr"]} /> */}
       <nav className={styles.navbarsub}>
         <div className={styles["navbarsub-list"]}>
           <ul id='myTopnav'>

@@ -1,4 +1,4 @@
-import { FetchProducts } from "@components/fetchProducts";
+import { fetchProducts } from "@components/fetchProducts";
 import { ProductsNav } from "@components/productsNav";
 import Head from "next/head";
 
@@ -41,7 +41,7 @@ const Donusler = ({ data }) => {
 export async function getServerSideProps(context) {
   try {
     const trump = context.resolvedUrl.split("/")[2];
-    const data = await FetchProducts(`products/${trump}`);
+    const data = await fetchProducts(`products/${trump}`);
     return {
       props: { data },
     };
